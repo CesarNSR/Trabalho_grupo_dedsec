@@ -34,36 +34,22 @@
         </nav>
     </header>
 
-<form action="cadastro.php" method="POST" class="form-cadastro">
-
-    <h2>Criar Conta</h2>
-
-    <input type="text" name="nome" placeholder="Nome" required>
-
-    <input type="email" name="email" placeholder="Email" required>
-
-    <input type="password" name="senha" placeholder="Senha" required>
-
-    <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
-
-    <button type="submit">Cadastrar</button>
-
-</form>
 
     <main>
+        <form action="cadastro.php" method="POST" class="form-cadastro">
         <div class="login-container">
             <h2>Criar Conta</h2>
 
-            <input type="text" placeholder="Usuário" id="username">
-            <input type="password" placeholder="Senha" id="password">
-            <input type="password" placeholder="Confirmar senha" id="confirmPassword">
+            <input type="text" name="usuario" placeholder="Usuário" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
 
-            <button onclick="criarConta()">Cadastrar</button>
+            <button type="submit" onclick="criarConta()">Cadastrar</button>
 
             <a href="index.html" class="forgot-password">Já tenho conta</a>
         </div>
     </main>
-
+</form>
     <script src="script.js"></script>
 
 </body>

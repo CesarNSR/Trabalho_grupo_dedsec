@@ -38,19 +38,20 @@
     </header>
 
     <!-- Conteúdo principal -->
+<form action="login.php" method="POST" class="form-cadastro">
     <main class="main-content">
         <div class="login-container">
             <h2>Entrar</h2>
 
-            <input type="text" placeholder="Usuário">
-            <input type="password" placeholder="Senha">
+            <input type="text" name="usuario" placeholder="Usuário" required>
+            <input type="password" name="senha" placeholder="Senha" required>
 
-            <button onclick="login()">Entrar</button>
+            <button type="submit">Entrar</button>
 
-            <!-- Esqueci senha -->
             <a href="#" class="forgot-password">Esqueci minha senha</a>
         </div>
     </main>
+</form>
 
     <!-- Script -->
     <script src="script.js"></script>
