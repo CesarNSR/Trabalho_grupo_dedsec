@@ -1,0 +1,13 @@
+Pra fazer funcionar, tem que recriar o banco de dados no xampp/localhost, é só usar o comando no terminar la 
+"-- Cria o banco
+CREATE DATABASE IF NOT EXISTS sistema;
+
+-- Usa o banco
+USE sistema;
+
+-- Cria a tabela de usuários
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);"
