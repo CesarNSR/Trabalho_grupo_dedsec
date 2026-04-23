@@ -13,6 +13,7 @@
     <div class="background"></div>
 
     <header class="header">
+
         <h1 class="logo">TesteTelaCadastro</h1>
 
         
@@ -32,6 +33,22 @@
             </button>
         </nav>
     </header>
+
+<form action="cadastro.php" method="POST" class="form-cadastro">
+
+    <h2>Criar Conta</h2>
+
+    <input type="text" name="nome" placeholder="Nome" required>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <input type="password" name="senha" placeholder="Senha" required>
+
+    <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
+
+    <button type="submit">Cadastrar</button>
+
+</form>
 
     <main>
         <div class="login-container">
