@@ -3,7 +3,8 @@ include "conexao.php";
 
 // Verifica se os dados foram enviados
 if (!isset($_POST['usuario'], $_POST['senha'], $_POST['confirmar_senha'])) {
-    die("Preencha todos os campos.");
+    header("Location: cadastro.html?erro=campos");
+    exit();
 }
 
 $usuario = trim($_POST['usuario']);
@@ -12,12 +13,14 @@ $confirmar = $_POST['confirmar_senha'];
 
 // Verifica se está vazio
 if (empty($usuario) || empty($senha) || empty($confirmar)) {
-    die("Todos os campos são obrigatórios.");
+    header("Location: cadastro.html?erro=vazio");
+    exit();
 }
 
 // Verifica se as senhas são iguais
 if ($senha !== $confirmar) {
-    die("As senhas não coincidem!");
+    header("Location: cadastro.html?erro=senha");
+    exit();
 }
 
 // Verifica se o usuário já existe
@@ -28,7 +31,8 @@ $stmt_check->execute();
 $stmt_check->store_result();
 
 if ($stmt_check->num_rows > 0) {
-    die("Usuário já existe!");
+    header("Location: cadastro.html?erro=existe");
+    exit();
 }
 
 // Criptografa a senha
@@ -39,16 +43,20 @@ $sql = "INSERT INTO usuarios (usuario, senha) VALUES (?, ?)";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
-    die("Erro no prepare: " . $conn->error);
+    header("Location: cadastro.html?erro=sql");
+    exit();
 }
 
 $stmt->bind_param("ss", $usuario, $senhaHash);
 
 // Executa
 if ($stmt->execute()) {
-    echo "Cadastro realizado com sucesso!";
+    // 🔥 VOLTA PRO LOGIN COM MENSAGEM
+    header("Location: index.html?msg=cadastro_sucesso");
+    exit();
 } else {
-    echo "Erro ao cadastrar: " . $stmt->error;
+    header("Location: cadastro.html?erro=cadastro");
+    exit();
 }
 
 // Fecha conexões
