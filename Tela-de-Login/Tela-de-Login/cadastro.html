@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <header class="header">
+
+        <h1 class="logo">TesteTelaCadastro</h1>
+
+        
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        
+        <nav>
+            <a href="#">Contato</a>
+            <a href="index.html">Login</a>
+
+            <button id="theme-toggle" onclick="toggleTheme()">
+                <span class="icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+
+    <main>
+        <form action="cadastro.php" method="POST" class="form-cadastro">
+        <div class="login-container">
+            <h2>Criar Conta</h2>
+
+            <input type="text" name="usuario" placeholder="Usuário" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
+
+            <button type="submit" onclick="criarConta()">Cadastrar</button>
+
+            <a href="index.html" class="forgot-password">Já tenho conta</a>
+        </div>
+    </main>
+</form>
+    <script src="script.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        
+        // DEBUG (pra ver se tá funcionando)
+        console.log("Parâmetros:", window.location.search);
+        
+        // usuário já existe
+        if (params.get("erro") === "existe") {
+            alert("Esse nome de usuário já está em uso!");
+        }
+        
+        // senha diferente
+        if (params.get("erro") === "senha") {
+            alert("As senhas não coincidem!");
+        }
+        
+        // campos vazios
+        if (params.get("erro") === "vazio") {
+            alert("Preencha todos os campos!");
+        }
+        </script>
+
+</body>
+</html>
