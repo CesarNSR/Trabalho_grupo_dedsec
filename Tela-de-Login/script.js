@@ -47,3 +47,9 @@ function toggleMenu() {
     nav.classList.toggle("active");
     toggle.classList.toggle("active");
 }
+
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("msg") === "sucesso") {
+    alert("Cadastro realizado com sucesso!");
+}

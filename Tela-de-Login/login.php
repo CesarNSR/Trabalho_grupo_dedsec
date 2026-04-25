@@ -2,56 +2,56 @@
 session_start();
 include "conexao.php";
 
-// Verifica se os dados foram enviados
+// Verifica envio
 if (!isset($_POST['usuario'], $_POST['senha'])) {
-    die("Preencha todos os campos.");
+    header("Location: index.html?erro=campos");
+    exit();
 }
 
 $usuario = trim($_POST['usuario']);
 $senha = $_POST['senha'];
 
-// Verifica se está vazio
 if (empty($usuario) || empty($senha)) {
-    die("Todos os campos são obrigatórios.");
+    header("Location: index.html?erro=campos");
+    exit();
 }
 
-// Busca o usuário no banco
+// Busca usuário
 $sql = "SELECT id, usuario, senha FROM usuarios WHERE usuario = ?";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
-    die("Erro no prepare: " . $conn->error);
+    header("Location: index.html?erro=servidor");
+    exit();
 }
 
 $stmt->bind_param("s", $usuario);
 $stmt->execute();
-
 $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
 
     $user = $result->fetch_assoc();
 
-    // Verifica a senha criptografada
     if (password_verify($senha, $user['senha'])) {
 
-        // Cria sessão
         $_SESSION['usuario_id'] = $user['id'];
         $_SESSION['usuario_nome'] = $user['usuario'];
 
-        // Redireciona (você pode trocar depois)
-        header("Location: dashboard.php");
-        exit;
+        // 🔥 REDIRECIONA COM MENSAGEM
+        header("Location: dashboard.php?msg=login");
+        exit();
 
     } else {
-        echo "Senha incorreta!";
+        header("Location: index.html?erro=senha");
+        exit();
     }
 
 } else {
-    echo "Usuário não encontrado!";
+    header("Location: index.html?erro=usuario");
+    exit();
 }
 
-// Fecha conexões
 $stmt->close();
 $conn->close();
 ?>
