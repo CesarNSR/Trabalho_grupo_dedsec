@@ -23,7 +23,7 @@ $usuario = $_SESSION['usuario_nome'];
 <script>
 const params = new URLSearchParams(window.location.search);
 
-// 🔥 Mensagem de login
+// Mensagem de login
 if (params.get("msg") === "login") {
     alert("Login realizado! Bem-vindo, <?php echo $usuario; ?>");
 }
