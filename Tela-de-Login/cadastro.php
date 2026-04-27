@@ -1,4 +1,4 @@
-<?php
+e<?php
 include "conexao.php";
 
 // Verifica se os dados foram enviados
@@ -51,7 +51,7 @@ $stmt->bind_param("ss", $usuario, $senhaHash);
 
 // Executa
 if ($stmt->execute()) {
-    // 🔥 VOLTA PRO LOGIN COM MENSAGEM
+    // VOLTA PRO LOGIN COM MENSAGEM
     header("Location: index.html?msg=cadastro_sucesso");
     exit();
 } else {
