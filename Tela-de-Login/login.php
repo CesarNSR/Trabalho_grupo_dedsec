@@ -38,7 +38,7 @@ if ($result->num_rows === 1) {
         $_SESSION['usuario_id'] = $user['id'];
         $_SESSION['usuario_nome'] = $user['usuario'];
 
-        // 🔥 REDIRECIONA COM MENSAGEM
+        // REDIRECIONA COM MENSAGEM
         header("Location: dashboard.php?msg=login");
         exit();
 
